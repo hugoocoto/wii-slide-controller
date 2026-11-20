@@ -1,0 +1,6 @@
+[submodule "lib/virt.h"]
+	path = lib/virt.h
+	url = https://github.com/hugoocoto/virt.h
+[submodule "lib/wiimote.h"]
+	path = lib/wiimote.h
+	url = https://github.com/hugoocoto/wiimote.h
