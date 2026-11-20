@@ -1,13 +1,22 @@
 CC      = gcc
 CFLAGS  = -std=c99 -Wall -Wextra -ggdb -Ilib/virt.h -Ilib/wiimote.h
 LDLIBS  = -pthread -lbluetooth
+PREFIX  = /usr/local
 
-all: a.out
+BIN = wii-slide-controller
 
-a.out: main.c lib/virt.h/virt.h lib/wiimote.h/wiimote.h
+all: $(BIN)
+
+$(BIN): main.c lib/virt.h/virt.h lib/wiimote.h/wiimote.h
 	$(CC) $(CFLAGS) main.c -o $@ $(LDLIBS)
 
-clean:
-	rm -f a.out
+install: $(BIN)
+	install -Dm755 $(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN)
 
-.PHONY: all clean
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
+
+clean:
+	rm -f $(BIN)
+
+.PHONY: all install uninstall clean
